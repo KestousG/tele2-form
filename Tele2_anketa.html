@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<!--
+  Author: Kęstutis Gudžiūnas
+  Document: Tele2 anketa
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tele2 forma</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background-color: #f8f8f8;
+        color: #333;
+        line-height: 1.4;
+      }
+      /* Header Styles */
+      header {
+        background-color: #000;
+        color: #fff;
+        padding: 20px 10%;
+        text-align: left;
+      }
+      header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+      }
+      header p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+      /* Main Container */
+      .container {
+        width: 80%;
+        max-width: 1000px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      /* Section Title Bars */
+      .section-title {
+        background-color: #0086ff;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      /* Form Rows */
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+      .form-label {
+        width: 100%;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .form-input {
+        width: 100%;
+        padding: 5px;
+        position: relative;
+      }
+      .form-input input,
+      .form-input select,
+      .form-input textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 0.9rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      /* Radio Group Styling */
+      .radio-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .radio-group label {
+        display: inline-flex;
+        align-items: left;
+        gap: 5px;
+        font-weight: normal;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+      /* Responsive Adjustments */
+      @media (max-width: 600px) {
+        .form-row {
+          flex-direction: column;
+        }
+        .form-label,
+        .form-input {
+          width: 100%;
+        }
+        header {
+          text-align: center;
+        }
+      }
+      /* Submit Button */
+      .submit-btn {
+        background-color: #00ca6c;
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .submit-btn:hover {
+        background-color: #1f3447;
+      }
+      /* Tooltip container */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        background-color: #0086ff;
+        color: white;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        font-size: 12px;
+        margin-left: 5px;
+        cursor: pointer;
+        outline: none;
+      }
+      /* Tooltip text */
+      .tooltip .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 5px);
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 0.9rem;
+        padding: 8px;
+        border-radius: 5px;
+        white-space: normal;
+        overflow-wrap: break-word;
+        min-width: 300px;
+        max-width: 500px;
+        text-align: left;
+        z-index: 10;
+        font-weight: 300;
+        transition: opacity 0.3s ease, visibility 0s linear 1s;
+      }
+      /* Tooltip hover/focus */
+      .tooltip:hover .tooltip-text,
+      .tooltip:focus .tooltip-text,
+      .tooltip .tooltip-text:hover {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+      }
+      /* Spinner */
+      .spinner {
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /* Watermark overlay styling */
+      .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 4rem;
+        color: rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+        z-index: 9999;
+        white-space: nowrap;
+      }
+      .file-item {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+      }
+      .file-item span {
+        margin-right: 10px;
+      }
+      .remove-btn {
+        cursor: pointer;
+        background-color: #ff5555;
+        border: none;
+        color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-weight: bold;
+        line-height: 16px;
+        text-align: center;
+      }
+	  
+      .fake-file-input {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 10px;
+        background: #fff;
+        font-size: 0.85rem;
+        box-sizing: border-box;
+      }
+      .fake-file-input .browse-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        padding: 3px 10px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        line-height: 1;
+        height: 26px;
+        display: flex;
+        align-items: center;
+      }
+      .fake-file-input input[type="file"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 90px;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .file-preview-item {
+        background-color: #e0e0e0;
+        border-radius: 12px;
+        padding: 1px 6px;
+        display: flex;
+        align-items: center;
+        line-height: 1.2;
+        height: 26px;
+      }
+      .file-preview-item span {
+        line-height: 1;
+      }
+      .file-preview-item .remove {
+        cursor: pointer;
+        font-size: 0.65rem;
+        margin-left: 4px;
+        line-height: 1;
+      }
+      .error-star {
+        color: red;
+        font-weight: bold;
+	  
+    </style>
+  </head>
+  <body>
+    <!-- <div class="watermark">© Tele2 UAB</div> -->
+    <header>
+      <h1>TELE2 ĮDARBINIMO FORMA</h1>
+      <p>
+        Siekdami užtikrinti sklandų įdarbinimo procesą tarp darbdavio ir darbuotojo,
+        prašome užpildyti šią formą ir atsiųsti sugeneruotą zip failą su jame išaugotais
+        dokumnetais.
+      </p>
+    </header>
+
+    <!-- Container (capture as an image) -->
+    <div class="container" id="formContainer">
+      <form id="membershipForm" action="#" method="POST">
+        <!-- REGISTRATION FORM SECTION -->
+        <div class="section-title">Kandidato duomenys</div>
+
+        <!-- 1. Vardas -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="vardas">Vardas<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="vardas" name="vardas" placeholder="Įveskite vardą" required />
+          </div>
+        </div>
+
+        <!-- 2. Pavardė -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="pavarde">Pavardė<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="pavarde" name="pavarde" placeholder="Įveskite pavardę" required />
+          </div>
+        </div>
+
+        <!-- 3. Darbo pradžia -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="darbo_pradzia">Darbo pradžia<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="date" id="darbo_pradzia" name="darbo_pradzia" placeholder="yyyy/mm/dd" required />
+          </div>
+        </div>
+
+        <!-- 4. Gyvenamosios vietos adresas -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="adresas">Gyvenamosios vietos adresas<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="adresas" name="adresas" placeholder="Gatvė, numeris, miestas" required />
+          </div>
+        </div>
+
+        <!-- 5. Miestas -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="miestas">Miestas<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="miestas" name="miestas" placeholder="Vilnius, Kaunas, ..." required />
+          </div>
+        </div>
+
+        <!-- 6. El. paštas -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="email">El. paštas<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="email" id="email" name="email" placeholder="vardas.pavarde@email.com" required />
+          </div>
+        </div>
+
+        <!-- 7. Telefono numeris -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="telefono_nr">Telefono numeris<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input
+              type="tel"
+              id="telefono_nr"
+              name="telefono_nr"
+              placeholder="600 00000"
+              value="+370 "
+              oninput="formatPhoneNumber(this)"
+              onfocus="keepPrefix(this)"
+              onpaste="setTimeout(() => formatPhoneNumber(this), 50)"
+              maxlength="14"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- 8. Sąskaitos NR. -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="saskaitos_nr">Sąskaitos Nr. (atlygiui)<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input
+              type="text"
+              id="saskaitos_nr"
+              name="saskaitos_nr"
+              placeholder="LT00 0000 0000 0000 0000"
+              pattern="^[A-Z]{2}\d{2}(?: \d{4}){3} \d{4}$"
+              title="Neatitinka formato LT00 0000 0000 0000 0000"
+              maxlength="24"
+              oninput="formatIBAN(this)"
+              onpaste="setTimeout(() => formatIBAN(this), 50)"
+            />
+          </div>
+        </div>
+
+        <!-- 9. Tele2 vertybė (Combo Box) -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="tele2_vertybe">Tele2 vertybė<span class ="error-star"> *<span></label>
+            <span class="tooltip">?
+              <span class="tooltip-text">
+                Pasirink Tele2 vertybę, kurią nori matyti ant savo darbuotojo pažymėjimo nugarėlės
+              </span>
+            </span>
+          </div>
+          <div class="form-input">
+            <select id="tele2_vertybe" name="tele2_vertybe" required>
+              <option value="BENDRADARBIAUJANTYS">BENDRADARBIAUJANTYS</option>
+              <option value="PATIKIMI">PATIKIMI</option>
+              <option value="VEDAMI ĮŽVALGŲ">VEDAMI ĮŽVALGŲ</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 9. Ar turite kitą veiklą? (Radio) -->
+        <div class="form-row">
+          <div class="form-label">
+            Apmokestinant pajamų mokesčiu gaunamas su darbo santykiais susijusias pajamas norėsiu<span class ="error-star"> *<span>
+            <span class="tooltip">?
+              <span class="tooltip-text">
+                Pasirinkus taikyti NPD, sudėjus visas metines pajamas, dėl svyruojančių pajamų, gali sumažėti (arba nebepriklausyti) NPD.
+                Tuomet nuo sumažėjusios NPD sumos gyventojui susidaro mokėtina pajamų mokesčio suma ir jam atsiranda pareiga deklaruoti metines pajamas bei pasimokėti GPM nepriemoką VMI.
+                Nesitaikant NPD ir pildant metinę deklaraciją, jei metinės pajamos neviršijo tam tikros sumos, gali susigrąžinti GPM iš VMI. Jei nustatyta suma viršijama – darbuotojas neišsiskolinęs VMI.
+              </span>
+            </span>
+          </div>
+          <div class="form-input radio-group">
+            <label>
+              <input type="radio" name="npd_taikymas" value="Taip" required />
+              Taikyti NPD
+            </label>
+            <label>
+              <input type="radio" name="npd_taikymas" value="Ne" />
+              Netaikyti NPD
+            </label>
+          </div>
+        </div>
+
+        <!-- 10. Smart-ID usage (Radio) -->
+        <div class="form-row">
+          <div class="form-label">
+            Naudojiesi m. parašu / Smart-ID?<span class ="error-star"> *<span>
+          </div>
+          <div class="form-input radio-group">
+            <label>
+              <input type="radio" name="smart_id_m_parasas" value="Taip" onclick="toggleWarning(false)" required />
+              Taip
+            </label>
+            <label>
+              <input type="radio" name="smart_id_m_parasas" value="Ne" onclick="toggleWarning(true)" />
+              Ne
+            </label>
+          </div>
+        </div>
+
+        <!-- Warning message (Initially hidden) -->
+        <div class="form-row" id="warning-message" style="color: red; font-size: 0.8rem; display: none;">
+          Prašome įsigyti Smart-ID arba m.parašą iki pirmosios darbo dienos.
+        </div>
+
+        <!-- 11. Ar turite kitą veiklą? (Radio) -->
+        <div class="form-row">
+          <div class="form-label">
+            Ar šiuo metu turite kitą veiklą, kuriai skiriate dalį darbo dienos ir kuri teikia papildomas pajamas?<span class ="error-star"> *<span>
+            <span class="tooltip">?
+              <span class="tooltip-text">
+                Pavyzdžiui: antraeilės pareigos, individuali veikla, autorinės sutartys ar kita
+              </span>
+            </span>
+          </div>
+          <div class="form-input radio-group">
+            <label>
+              <input type="radio" name="papildomos_pajamos" value="Taip" onclick="toggleVeiklaField(true)" required />
+              Taip
+            </label>
+            <label>
+              <input type="radio" name="papildomos_pajamos" value="Ne" onclick="toggleVeiklaField(false)" />
+              Ne
+            </label>
+          </div>
+        </div>
+
+        <!-- Papildoma veikla field (Hidden initially) -->
+        <div class="form-row" id="veikla-field" style="visibility: hidden; opacity: 0; height: 0; transition: opacity 0.3s ease-in-out;">
+          <div class="form-label">
+            <label for="veikla">Trumpai apibūdinkite papildomą veiklą</label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="veikla" name="papildoma_veikla" placeholder="Įveskite papildomą veiklą" />
+          </div>
+        </div>
+
+        <div id="filesSection">
+          <!-- File Upload Section -->
+          <div class="section-title">Sąrašas dokumentų, kuriuos reikia prisegti</div>
+          <!-- Paso arba asmens tapatybės kortelės kopija -->
+          <div class="form-row">
+            <div class="form-label">
+              <label for="passportCopy">Paso arba asmens tapatybės kortelės el. kopija<span class ="error-star"> *<span></label>
+            </div>
+            <div class="form-input">
+              <input type="file" id="passportCopy" name="passportCopy" multiple required />
+            </div>
+          </div>
+          <!-- Nuotrauka darbo pažymėjimui -->
+          <div class="form-row">
+            <div class="form-label">
+              <label for="photo">Nuotrauka JPG formatu darbo pažymėjimui<span class ="error-star"> *<span></label>
+            </div>
+            <div class="form-input">
+              <input type="file" id="photo" name="photo" multiple accept="image/jpeg, image/jpg" required />
+            </div>
+          </div>
+          <!-- Neteistumo pažyma -->
+          <div class="form-row">
+            <div class="form-label">
+              <label for="neteistumoPazyma">Neteistumo pažyma</label>
+              <span class="tooltip">?
+                <span class="tooltip-text">
+                  Privaloma darbuotojams, kurie dirba pardavimuose privatiems ir verslo klientams.
+                  Jei kyla klausimas, ar reikia jums, rašykite už įdarbinimą atsakingam asmeniui.
+                  Tinka el. pažymos formatas. Užsisakyti išrašą internetu BŪTINAI ELEKTRONINIAM .ADOC FORMATE (įmoka bus grąžinta).
+                  Prisijungus prie e.paslaugos portalo, eikite į Pažymos -> Pildyti naują pažymą -> Įtariamųjų, kaltinamųjų ir nuteistųjų registras -> Pažymos tikslas – Lietuvos Respublikos juridiniams asmenims.
+                </span>
+              </span>
+            </div>
+            <div class="form-input">
+              <input type="file" id="neteistumoPazyma" name="neteistumoPazyma" multiple />
+            </div>
+          </div>
+          <!-- Kiti svarbūs dokumentai -->
+          <div class="form-row">
+            <div class="form-label">
+              <label for="otherDocuments">Kiti svarbūs dokumentai</label>
+              <span class="tooltip">?
+                <span class="tooltip-text">
+                  Dokumentai, kurių pateikimas gali turėti įtakos darbo santykiams:
+                  vaikų gimimo liudijimai, ištuokos liudijimas, neįgalumo pažyma, pažyma, kad vienas auginate vaikus ir t.t.
+                </span>
+              </span>
+            </div>
+            <div class="form-input">
+              <input type="file" id="otherDocuments" name="otherDocuments" multiple />
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONAL INFORMATION SECTION -->
+        <div class="section-title">Kontaktinio asmens duomenys kritiniu atveju</div>
+        <!-- 1. Ryšys -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="kantakto_rysys">Ryšys<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="kantakto_rysys" name="kantakto_rysys" placeholder="Pvz. Sutuoktinis/-ė, Draugas/-ė, Brolis, Sesė" required />
+          </div>
+        </div>
+        <!-- 2. Kontakt. Vardas -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="kontaktinis_vardas">Vardas<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input type="text" id="kontaktinis_vardas" name="kontaktinis_vardas" placeholder="Kontaktinio asmens vardas" required />
+          </div>
+        </div>
+        <!-- 3. Kontakt telefono numeris -->
+        <div class="form-row">
+          <div class="form-label">
+            <label for="kontaktinis_telelefono_nr">Telefono numeris<span class ="error-star"> *<span></label>
+          </div>
+          <div class="form-input">
+            <input
+              type="tel"
+              id="kontakt_tel"
+              name="kontaktinis_telelefono_nr"
+              placeholder="600 00000"
+              value="+370 "
+              oninput="formatPhoneNumber(this)"
+              onfocus="keepPrefix(this)"
+              onpaste="setTimeout(() => formatPhoneNumber(this), 50)"
+              maxlength="14"
+              required
+            />
+          </div>
+        </div>
+        <!-- SUBMIT BUTTON -->
+        <div class="form-row" style="justify-content: center;">
+          <button type="submit" id="submitButton" class="submit-btn">
+            Pateikti ir archyvuoti
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <!-- Consolidated Scripts -->
+    <script>
+      // Format IBAN field
+      function formatIBAN(input) {
+        let raw = input.value.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+        let letters = raw.slice(0, 2).replace(/[^A-Z]/g, "");
+        let digits = raw.slice(2).replace(/[^0-9]/g, "").substring(0, 18);
+        let combined = letters + digits;
+        let groups = combined.match(/.{1,4}/g) || [];
+        input.value = groups.join(" ");
+      }
+
+      // Format phone number for manual input
+      function formatPhoneNumber(input) {
+        // Remove spaces, dashes, parentheses, etc.
+        let raw = input.value.replace(/[\s\-()]/g, "");
+        let digits = "";
+        if (raw.startsWith("+370")) {
+          digits = raw.substring(4);
+        } else if (raw.startsWith("370")) {
+          digits = raw.substring(3);
+        } else if (raw.startsWith("8")) {
+          digits = raw.substring(1);
+        } else {
+          digits = raw;
+        }
+        digits = digits.replace(/\D/g, "").substring(0, 8);
+        let part1 = digits.substring(0, 3);
+        let part2 = digits.substring(3);
+        input.value = "+370 " + part1 + (part2 ? " " + part2 : "");
+      }
+
+      // For paste events: ignore the existing field value and use the pasted content.
+      function handlePaste(e, input) {
+        e.preventDefault();
+        let pasted = (e.clipboardData || window.clipboardData).getData("text");
+        let raw = pasted.replace(/[\s\-()]/g, "");
+        let digits = "";
+        if (raw.startsWith("+370")) {
+          digits = raw.substring(4);
+        } else if (raw.startsWith("370")) {
+          digits = raw.substring(3);
+        } else if (raw.startsWith("8")) {
+          digits = raw.substring(1);
+        } else {
+          digits = raw;
+        }
+        digits = digits.replace(/\D/g, "").substring(0, 8);
+        let part1 = digits.substring(0, 3);
+        let part2 = digits.substring(3);
+        input.value = "+370 " + part1 + (part2 ? " " + part2 : "");
+      }
+
+      // Toggle visibility of the additional activity field
+      function toggleVeiklaField(show) {
+        const field = document.getElementById("veikla-field");
+        if (show) {
+          field.style.visibility = "visible";
+          field.style.opacity = "1";
+          field.style.height = "auto";
+        } else {
+          field.style.opacity = "0";
+          field.style.height = "0";
+          setTimeout(() => {
+            field.style.visibility = "hidden";
+          }, 300);
+        }
+      }
+
+      // Toggle the Smart-ID warning message
+      function toggleWarning(show) {
+        document.getElementById("warning-message").style.display = show ? "block" : "none";
+      }
+
+      document.getElementById("membershipForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById("submitButton");
+        submitBtn.disabled = true;
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner"></span>Palaukite...';
+
+        const filesSection = document.getElementById("filesSection");
+        if (filesSection) {
+          filesSection.style.display = "none";
+        }
+
+		function escapeCSV(str) {
+		  let s = String(str).replace(/"/g, '""');  // Always escape double quotes…
+		  return `"${s}"`;                         // …and always wrap the string in quotes.
+		}
+        const formData = new FormData(document.getElementById("membershipForm"));
+        const excludedFields = ["passportCopy", "photo", "neteistumoPazyma", "otherDocuments"];
+        let csvString = '"Field","Value"\n';
+		formData.forEach((value, key) => {
+		  if (excludedFields.indexOf(key) === -1) {
+			// Remove spaces from IBAN and phone numbers
+			if (key === "saskaitos_nr" || key === "telefono_nr" || key === "kontaktinis_telelefono_nr") {
+			  value = value.replace(/\s+/g, "");
+			}
+			if (key === "darbo_pradzia") {
+			  const d = new Date(value);
+			  // Ensure date is valid before formatting
+			  if (!isNaN(d)) {
+				const yyyy = d.getFullYear();
+				const mm = ("0" + (d.getMonth() + 1)).slice(-2);
+				const dd = ("0" + d.getDate()).slice(-2);
+				value = `${yyyy}-${mm}-${dd}`;
+			  }
+			}
+			csvString += `${escapeCSV(key)},${escapeCSV(value)}\n`;
+		  }
+		});
+        const csvWithBom = "\ufeff" + csvString;
+
+		html2canvas(document.getElementById("formContainer"), {
+		  ignoreElements: function (element) {
+			return element.id === "submitButton";
+		  }
+		}).then(function (canvas) {
+		  const { jsPDF } = window.jspdf;
+		  const pdf = new jsPDF("p", "pt", "a4");
+		  const pageWidth = pdf.internal.pageSize.getWidth();
+		  const pageHeight = pdf.internal.pageSize.getHeight();
+		  const scale = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+		  const newWidth = canvas.width * scale;
+		  const newHeight = canvas.height * scale;
+		  const imgData = canvas.toDataURL("image/png");
+		  const marginX = (pageWidth - newWidth) / 2;
+		  const marginY = (pageHeight - newHeight) / 2;
+		  pdf.addImage(imgData, "PNG", marginX, marginY, newWidth, newHeight);
+		  const pdfBlob = pdf.output("blob");
+
+		  const zip = new JSZip();
+		  zip.file("Įdarbinimo forma.pdf", pdfBlob);
+
+          const fileInputs = document.querySelectorAll('input[type="file"]');
+          fileInputs.forEach((input) => {
+            Array.from(input.files).forEach((file) => {
+              zip.file(file.name, file);
+            });
+          });
+
+          zip.file("info.csv", csvWithBom);
+
+          zip.generateAsync({ type: "blob" }).then(function (content) {
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(content);
+            a.download = "Tele2_anketa_ir_failai.zip";
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+              URL.revokeObjectURL(a.href);
+              document.body.removeChild(a);
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalText;
+              if (filesSection) {
+                filesSection.style.display = "";
+              }
+            }, 100);
+          });
+        });
+      });
+
+      document.querySelectorAll('input[type="file"]').forEach((input) => {
+        if (input.classList.contains("enhanced")) return;
+        input.classList.add("enhanced");
+
+        const filesArray = [];
+        const wrapper = document.createElement("div");
+        wrapper.className = "fake-file-input";
+
+        const button = document.createElement("div");
+        button.className = "browse-btn";
+        button.textContent = "Browse...";
+
+        const preview = document.createElement("div");
+        preview.style.display = "flex";
+        preview.style.flexWrap = "wrap";
+        preview.style.gap = "6px";
+
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(button);
+        wrapper.appendChild(preview);
+        wrapper.appendChild(input);
+
+        function updatePreview() {
+          preview.innerHTML = "";
+          filesArray.forEach((file, index) => {
+            const item = document.createElement("div");
+            item.className = "file-preview-item";
+
+            const name = document.createElement("span");
+            name.textContent = file.name;
+
+            const remove = document.createElement("span");
+            remove.className = "remove";
+            remove.textContent = "❎";
+            remove.title = "Remove";
+            remove.onclick = () => {
+              filesArray.splice(index, 1);
+              updatePreview();
+              updateInput();
+            };
+
+            item.appendChild(name);
+            item.appendChild(remove);
+            preview.appendChild(item);
+          });
+        }
+
+        function updateInput() {
+          const dt = new DataTransfer();
+          filesArray.forEach((f) => dt.items.add(f));
+          input.files = dt.files;
+        }
+
+        input.addEventListener("change", () => {
+          Array.from(input.files).forEach((file) => {
+            if (!filesArray.some((f) => f.name === file.name)) {
+              filesArray.push(file);
+            }
+          });
+          input.value = "";
+          updatePreview();
+          updateInput();
+        });
+      });
+    </script>
+  </body>
+</html>
