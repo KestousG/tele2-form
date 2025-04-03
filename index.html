@@ -79,20 +79,38 @@
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-      /* Radio Group Styling */
-      .radio-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .radio-group label {
-        display: inline-flex;
-        align-items: left;
-        gap: 5px;
-        font-weight: normal;
-        font-size: 0.9rem;
-        white-space: nowrap;
-      }
+/* Radio Group Styling */
+.radio-group {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radio-group label {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center; /* Changed from 'left' */
+  gap: 5px;
+  font-weight: normal;
+  font-size: 0.9rem;
+  /* Consider removing nowrap if text is too long on iOS:
+  white-space: nowrap; */
+}
+
+/* Fallback for gap support (if needed on older iOS versions) */
+.radio-group > * + * {
+  margin-left: 1rem;
+}
+
+/* Optional: Allow label text to wrap on small screens */
+@media (max-width: 600px) {
+  .radio-group label {
+    white-space: normal;
+  }
+}
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
