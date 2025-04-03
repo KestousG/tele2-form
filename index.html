@@ -79,18 +79,20 @@
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-/* Radio Group Styling */
-.radio-group {
-  display: block; /* or flex-direction: column */
-}
-
-.radio-group label {
-  display: block;
-  margin: 0.5rem 0;
-  white-space: normal;
-  word-break: break-word;
-}
-
+      /* Radio Group Styling */
+      .radio-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .radio-group label {
+        display: inline-flex;
+        align-items: left;
+        gap: 5px;
+        font-weight: normal;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
