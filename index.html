@@ -81,36 +81,41 @@
       }
 /* Radio Group Styling */
 .radio-group {
-  display: -webkit-flex;
+  display: -webkit-flex; /* older iOS Safari support */
   display: flex;
-  -webkit-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap; /* allow wrapping on small screens */
   flex-wrap: wrap;
+  -webkit-align-items: center; /* older iOS Safari support */
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; /* note: older iOS Safari may ignore gap; see fallback below */
 }
 
-.radio-group label {
-  display: -webkit-flex;
-  display: flex;
-  align-items: center; /* Changed from 'left' */
-  gap: 5px;
-  font-weight: normal;
-  font-size: 0.9rem;
-  /* Consider removing nowrap if text is too long on iOS:
-  white-space: nowrap; */
-}
-
-/* Fallback for gap support (if needed on older iOS versions) */
+/* Fallback if gap is not supported in older Safari: space out children */
 .radio-group > * + * {
   margin-left: 1rem;
 }
 
-/* Optional: Allow label text to wrap on small screens */
+.radio-group label {
+  display: -webkit-inline-flex; /* or -webkit-flex; just be consistent */
+  display: inline-flex;
+  -webkit-align-items: center; 
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  font-size: 0.9rem;
+
+  /* Removing or commenting out white-space: nowrap helps on small screens */
+  /* white-space: nowrap; */
+}
+
+/* If you really need nowrap on bigger screens,
+   you can restore it above and allow wrapping only on smaller devices: */
 @media (max-width: 600px) {
   .radio-group label {
     white-space: normal;
   }
 }
+
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
