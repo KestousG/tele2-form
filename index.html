@@ -81,40 +81,30 @@
       }
 /* Radio Group Styling */
 .radio-group {
-  display: -webkit-flex; /* older iOS Safari support */
+  display: -webkit-flex; /* iOS Safari support */
   display: flex;
-  -webkit-flex-wrap: wrap; /* allow wrapping on small screens */
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-align-items: center; /* older iOS Safari support */
   align-items: center;
-  gap: 1rem; /* note: older iOS Safari may ignore gap; see fallback below */
-}
-
-/* Fallback if gap is not supported in older Safari: space out children */
-.radio-group > * + * {
-  margin-left: 1rem;
+  /* Remove gap if causing issues and use margin instead */
 }
 
 .radio-group label {
-  display: -webkit-inline-flex; /* or -webkit-flex; just be consistent */
-  display: inline-flex;
-  -webkit-align-items: center; 
+  display: flex;  /* Use block-level flex */
   align-items: center;
-  gap: 5px;
+  margin-right: 1rem; /* Provide spacing between labels */
   font-weight: normal;
   font-size: 0.9rem;
-
-  /* Removing or commenting out white-space: nowrap helps on small screens */
-  /* white-space: nowrap; */
+  white-space: normal; /* Allow text to wrap */
+  word-break: break-word; /* Break long words if needed */
 }
 
-/* If you really need nowrap on bigger screens,
-   you can restore it above and allow wrapping only on smaller devices: */
-@media (max-width: 600px) {
-  .radio-group label {
-    white-space: normal;
-  }
+/* Ensure radio inputs don't shrink */
+.radio-group input[type="radio"] {
+  flex-shrink: 0;
+  margin-right: 5px;
 }
+
 
       /* Responsive Adjustments */
       @media (max-width: 600px) {
