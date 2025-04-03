@@ -81,26 +81,16 @@
       }
 /* Radio Group Styling */
 .radio-group {
-  display: -webkit-flex; /* for older iOS Safari */
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin: 0 -0.5rem; /* negative margin to offset the label margins if needed */
+  display: block; /* or flex-direction: column */
 }
 
 .radio-group label {
-  display: flex; /* block-level flex, so each label can wrap naturally */
-  align-items: center;
-  margin: 0.5rem; /* spacing between labels */
-  font-size: 1rem; /* at least 16px to avoid auto-zoom on iOS */
-  white-space: normal; 
+  display: block;
+  margin: 0.5rem 0;
+  white-space: normal;
   word-break: break-word;
 }
 
-.radio-group input[type="radio"] {
-  flex-shrink: 0; /* prevent the radio button from shrinking */
-  margin-right: 0.5rem;
-}
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
