@@ -79,20 +79,24 @@
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-      /* Radio Group Styling */
-      .radio-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .radio-group label {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-weight: normal;
-        font-size: 0.9rem;
-        white-space: nowrap;
-      }
+  .radio-group {
+    display: flex;
+    align-items: center;
+    /* If gap isn’t supported in older iOS versions, comment out the next line and use the margin below */
+    gap: 1rem;
+  }
+  .radio-group label {
+    display: flex; /* Using flex instead of inline-flex for better consistency */
+    align-items: center; /* Valid flex value */
+    gap: 5px;
+    font-weight: normal;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  /* Fallback for gap on older iOS versions */
+  .radio-group label:not(:last-child) {
+    margin-right: 1rem;
+  }
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
