@@ -81,21 +81,19 @@
       }
   .radio-group {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    /* If gap isn’t supported in older iOS versions, comment out the next line and use the margin below */
-    gap: 1rem;
   }
   .radio-group label {
-    display: flex; /* Using flex instead of inline-flex for better consistency */
-    align-items: center; /* Valid flex value */
-    gap: 5px;
-    font-weight: normal;
-    font-size: 0.9rem;
-    white-space: nowrap;
-  }
-  /* Fallback for gap on older iOS versions */
-  .radio-group label:not(:last-child) {
+    display: flex;
+    align-items: center;
     margin-right: 1rem;
+  }
+  .radio-group label input[type="radio"] {
+    margin: 0;
+    margin-right: 0.5rem; /* space between radio and text */
+    width: 20px;          /* force a consistent size */
+    height: 20px;
   }
       /* Responsive Adjustments */
       @media (max-width: 600px) {
