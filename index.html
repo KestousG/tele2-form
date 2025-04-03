@@ -83,7 +83,6 @@
 .radio-group {
   /* Let labels wrap if they're too wide, avoiding overlap on narrow screens */
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem; /* spacing between labels (may not work on older iOS Safari) */
   
   /* Fallback for older Safari if `gap` is ignored */
@@ -447,7 +446,7 @@
               </span>
             </span>
           </div>
-          <div class="radio-group">
+          <div class="form-input radio-group">
             <label>
               <input type="radio" name="npd_taikymas" value="Taip" required />
               Taikyti NPD
