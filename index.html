@@ -81,28 +81,40 @@
       }
       /* Radio Group Styling */
 .radio-group {
-  display: -webkit-flex; /* for older iOS */
+  /* Let labels wrap if they're too wide, avoiding overlap on narrow screens */
   display: flex;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem; /* spacing between labels (may not work on older iOS Safari) */
+  
+  /* Fallback for older Safari if `gap` is ignored */
+  /* .radio-group > * + * {
+       margin-left: 1rem;
+     } */
 }
 
 .radio-group label {
-  display: -webkit-inline-flex; /* for iOS Safari */
+  /* Inline-flex ensures radio and text are on the same line */
   display: inline-flex;
-  -webkit-align-items: center;
   align-items: center;
-  gap: 5px;
-  font-weight: normal;
-  font-size: 1rem; /* 16px helps prevent auto-zoom on iOS */
-  white-space: nowrap;  /* force everything on one line */
+
+  /* Big enough font to prevent iOS auto-zoom */
+  font-size: 16px; 
+  line-height: 1.2;
+
+  /* Let text wrap if it’s really long, but it won't overlap the radio */
+  white-space: normal;
+  word-break: break-word;
+
+  /* Some extra spacing around each label block */
+  margin: 0.25rem 0;
 }
 
 .radio-group input[type="radio"] {
-  flex-shrink: 0; /* prevents the radio from shrinking */
+  /* Keep the radio button from shrinking if text is too long */
+  flex-shrink: 0;
+  margin-right: 0.5rem; /* space between radio and text */
 }
+
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
