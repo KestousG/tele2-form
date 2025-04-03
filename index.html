@@ -80,19 +80,29 @@
         border-radius: 4px;
       }
       /* Radio Group Styling */
-      .radio-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .radio-group label {
-        display: inline-flex;
-        align-items: left;
-        gap: 5px;
-        font-weight: normal;
-        font-size: 0.9rem;
-        white-space: nowrap;
-      }
+.radio-group {
+  display: -webkit-flex; /* for older iOS */
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radio-group label {
+  display: -webkit-inline-flex; /* for iOS Safari */
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  font-size: 1rem; /* 16px helps prevent auto-zoom on iOS */
+  white-space: nowrap;  /* force everything on one line */
+}
+
+.radio-group input[type="radio"] {
+  flex-shrink: 0; /* prevents the radio from shrinking */
+}
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
