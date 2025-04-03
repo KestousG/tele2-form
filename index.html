@@ -5,7 +5,7 @@
 -->
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tele2 forma</title>
     <style>
       /* Basic Reset */
@@ -81,31 +81,26 @@
       }
 /* Radio Group Styling */
 .radio-group {
-  display: -webkit-flex; /* iOS Safari support */
+  display: -webkit-flex; /* for older iOS Safari */
   display: flex;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  align-items: center;
-  /* Remove gap if causing issues and use margin instead */
+  margin: 0 -0.5rem; /* negative margin to offset the label margins if needed */
 }
 
 .radio-group label {
-  display: flex;  /* Use block-level flex */
+  display: flex; /* block-level flex, so each label can wrap naturally */
   align-items: center;
-  margin-right: 1rem; /* Provide spacing between labels */
-  font-weight: normal;
-  font-size: 0.9rem;
-  white-space: normal; /* Allow text to wrap */
-  word-break: break-word; /* Break long words if needed */
+  margin: 0.5rem; /* spacing between labels */
+  font-size: 1rem; /* at least 16px to avoid auto-zoom on iOS */
+  white-space: normal; 
+  word-break: break-word;
 }
 
-/* Ensure radio inputs don't shrink */
 .radio-group input[type="radio"] {
-  flex-shrink: 0;
-  margin-right: 5px;
+  flex-shrink: 0; /* prevent the radio button from shrinking */
+  margin-right: 0.5rem;
 }
-
-
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
