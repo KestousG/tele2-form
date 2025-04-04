@@ -301,7 +301,7 @@
             <label for="vardas">Vardas<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="vardas" name="vardas" placeholder="Įveskite vardą" required pattern="[A-Ža-ž ]+"/>
+            <input type="text" id="vardas" name="vardas" placeholder="Įveskite vardą" required pattern="[A-Ža-ž ]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
 
@@ -311,7 +311,7 @@
             <label for="pavarde">Pavardė<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="pavarde" name="pavarde" placeholder="Įveskite pavardę" required pattern="[-A-Ža-ž ]+"/>
+            <input type="text" id="pavarde" name="pavarde" placeholder="Įveskite pavardę" required pattern="[-A-Ža-ž ]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
 
@@ -331,7 +331,7 @@
             <label for="adresas">Gyvenamosios vietos adresas<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="adresas" name="adresas" placeholder="Gatvė, numeris" required pattern="[-A-Ža-ž \.,]+"/>
+            <input type="text" id="adresas" name="adresas" placeholder="Gatvė, numeris" required pattern="[-A-Ža-ž \.,]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
 
@@ -341,7 +341,7 @@
             <label for="miestas">Miestas<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="miestas" name="miestas" placeholder="Vilnius, Kaunas, ..." required pattern="[-A-Ža-ž \.,]+"/>
+            <input type="text" id="miestas" name="miestas" placeholder="Vilnius, Kaunas, ..." required pattern="[-A-Ža-ž \.,]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
 
@@ -489,7 +489,7 @@
             <label for="veikla">Trumpai apibūdinkite papildomą veiklą</label>
           </div>
           <div class="form-input">
-            <input type="text" id="veikla" name="papildoma_veikla" placeholder="Įveskite papildomą veiklą" />
+            <input type="text" id="veikla" name="papildoma_veikla" placeholder="Įveskite papildomą veiklą"/>
           </div>
         </div>
 
@@ -556,7 +556,7 @@
             <label for="kantakto_rysys">Ryšys<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="kantakto_rysys" name="kantakto_rysys" placeholder="Sutuoktinis/-ė, Draugas/-ė, Brolis, Sesė" required pattern="[-A-Ža-ž \.,]+"/>
+            <input type="text" id="kantakto_rysys" name="kantakto_rysys" placeholder="Sutuoktinis/-ė, Draugas/-ė, Brolis, Sesė" required pattern="[-A-Ža-ž \.,]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
         <!-- 2. Kontakt. Vardas -->
@@ -565,7 +565,7 @@
             <label for="kontaktinis_vardas">Vardas<span class ="error-star"> *<span></label>
           </div>
           <div class="form-input">
-            <input type="text" id="kontaktinis_vardas" name="kontaktinis_vardas" placeholder="Kontaktinio asmens vardas" required pattern="[-A-Ža-ž \.,]+"/>
+            <input type="text" id="kontaktinis_vardas" name="kontaktinis_vardas" placeholder="Kontaktinio asmens vardas" required pattern="[-A-Ža-ž \.,]+" title="Negalima naudoti specialių simbolių"/>
           </div>
         </div>
         <!-- 3. Kontakt telefono numeris -->
