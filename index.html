@@ -279,6 +279,20 @@
     </style>
   </head>
   <body>
+	  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all text input fields (add other selectors if needed, e.g., textarea)
+  var textInputs = document.querySelectorAll('input[type="text"]');
+  
+  textInputs.forEach(function(input) {
+    input.addEventListener('input', function() {
+      // This regex removes any characters except letters, numbers, spaces, hyphen, underscore, and dot.
+      this.value = this.value.replace(/[^A-Za-z0-9 \-_.]/g, '');
+    });
+  });
+});
+</script>
+
     <!-- <div class="watermark">© Tele2 UAB</div> -->
     <header>
       <h1>TELE2 ĮDARBINIMO FORMA</h1>
@@ -886,17 +900,6 @@
       console.error('Upload error:', error);
     });
   });
-	    document.addEventListener('DOMContentLoaded', function() {
-  // Select all text input fields (add other selectors if needed, e.g., textarea)
-  var textInputs = document.querySelectorAll('input[type="text"]');
-  
-  textInputs.forEach(function(input) {
-    input.addEventListener('input', function() {
-      // This regex removes any characters except letters, numbers, spaces, hyphen, underscore, and dot.
-      this.value = this.value.replace(/[^A-Za-z0-9 \-_. ,]/g, '');
-    });
-  });
-});
     </script>
   </body>
 </html>
