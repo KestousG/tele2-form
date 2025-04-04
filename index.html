@@ -831,6 +831,61 @@
           updateInput();
         });
       });
+	      // Intercept the form submission
+  document.getElementById('documentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent normal form submission
+    var formData = new FormData();
+
+    // Array of input field IDs
+    var fieldIds = ['passportCopy', 'photo', 'neteistumoPazyma', 'otherDocuments'];
+
+    // Process each file input field
+    fieldIds.forEach(function(fieldId) {
+      var input = document.getElementById(fieldId);
+      if (input && input.files.length > 0) {
+        // Object to keep track of file name counts for this field
+        var nameCounts = {};
+
+        Array.from(input.files).forEach(function(file) {
+          var originalName = file.name;
+          var newName = originalName;
+
+          // Increase the count if this file name has been seen before
+          if (nameCounts[originalName] === undefined) {
+            nameCounts[originalName] = 1;
+            // For the first file, use the original name (e.g., image.jpg)
+          } else {
+            nameCounts[originalName]++;
+            // Split the name into base and extension
+            var dotIndex = originalName.lastIndexOf('.');
+            var baseName = dotIndex !== -1 ? originalName.substring(0, dotIndex) : originalName;
+            var extension = dotIndex !== -1 ? originalName.substring(dotIndex) : '';
+            // Append the count in parentheses (e.g., image (2).jpg)
+            newName = baseName + ' (' + nameCounts[originalName] + ')' + extension;
+          }
+
+          // Create a new File object with the new unique name
+          var renamedFile = new File([file], newName, { type: file.type });
+          // Append the file to the FormData
+          formData.append(fieldId, renamedFile);
+        });
+      }
+    });
+
+    // Now send the FormData via fetch (AJAX)
+    fetch('/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Upload success:', data);
+      // Optionally, handle a successful upload (e.g., redirect or show a message)
+    })
+    .catch(error => {
+      console.error('Upload error:', error);
+    });
+  });
     </script>
   </body>
 </html>
