@@ -5,7 +5,8 @@
 -->
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tele2 forma</title>
     <style>
       /* Basic Reset */
@@ -79,22 +80,22 @@
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-  .radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .radio-group label {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-  }
-  .radio-group label input[type="radio"] {
-    margin: 0;
-    margin-right: 0.5rem; /* space between radio and text */
-    width: 20px;          /* force a consistent size */
-    height: 20px;
-  }
+      .radio-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+      }
+      .radio-group label input[type="radio"] {
+        margin: 0;
+        margin-right: 0.5rem; /* space between radio and text */
+        width: 20px;          /* force a consistent size */
+        height: 20px;
+      }
       /* Responsive Adjustments */
       @media (max-width: 600px) {
         .form-row {
@@ -219,7 +220,7 @@
         line-height: 16px;
         text-align: center;
       }
-	  
+      
       .fake-file-input {
         display: flex;
         flex-wrap: wrap;
@@ -275,7 +276,7 @@
       .error-star {
         color: red;
         font-weight: bold;
-	  
+      }
     </style>
   </head>
   <body>
@@ -298,7 +299,7 @@
         <!-- 1. Vardas -->
         <div class="form-row">
           <div class="form-label">
-            <label for="vardas">Vardas<span class ="error-star"> *<span></label>
+            <label for="vardas">Vardas<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="vardas" name="vardas" placeholder="Įveskite vardą" required />
@@ -308,7 +309,7 @@
         <!-- 2. Pavardė -->
         <div class="form-row">
           <div class="form-label">
-            <label for="pavarde">Pavardė<span class ="error-star"> *<span></label>
+            <label for="pavarde">Pavardė<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="pavarde" name="pavarde" placeholder="Įveskite pavardę" required />
@@ -318,7 +319,7 @@
         <!-- 3. Darbo pradžia -->
         <div class="form-row">
           <div class="form-label">
-            <label for="darbo_pradzia">Darbo pradžia<span class ="error-star"> *<span></label>
+            <label for="darbo_pradzia">Darbo pradžia<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="date" id="darbo_pradzia" name="darbo_pradzia" placeholder="yyyy/mm/dd" required />
@@ -328,7 +329,7 @@
         <!-- 4. Gyvenamosios vietos adresas -->
         <div class="form-row">
           <div class="form-label">
-            <label for="adresas">Gyvenamosios vietos adresas<span class ="error-star"> *<span></label>
+            <label for="adresas">Gyvenamosios vietos adresas<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="adresas" name="adresas" placeholder="Gatvė, numeris" required />
@@ -338,7 +339,7 @@
         <!-- 5. Miestas -->
         <div class="form-row">
           <div class="form-label">
-            <label for="miestas">Miestas<span class ="error-star"> *<span></label>
+            <label for="miestas">Miestas<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="miestas" name="miestas" placeholder="Vilnius, Kaunas, ..." required />
@@ -348,7 +349,7 @@
         <!-- 6. El. paštas -->
         <div class="form-row">
           <div class="form-label">
-            <label for="email">El. paštas<span class ="error-star"> *<span></label>
+            <label for="email">El. paštas<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="email" id="email" name="email" placeholder="vardas.pavarde@email.com" required />
@@ -358,7 +359,7 @@
         <!-- 7. Telefono numeris -->
         <div class="form-row">
           <div class="form-label">
-            <label for="telefono_nr">Telefono numeris<span class ="error-star"> *<span></label>
+            <label for="telefono_nr">Telefono numeris<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input
@@ -379,7 +380,7 @@
         <!-- 8. Sąskaitos NR. -->
         <div class="form-row">
           <div class="form-label">
-            <label for="saskaitos_nr">Sąskaitos Nr. (atlygiui)<span class ="error-star"> *<span></label>
+            <label for="saskaitos_nr">Sąskaitos Nr. (atlygiui)<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input
@@ -399,7 +400,7 @@
         <!-- 9. Tele2 vertybė (Combo Box) -->
         <div class="form-row">
           <div class="form-label">
-            <label for="tele2_vertybe">Tele2 vertybė<span class ="error-star"> *<span></label>
+            <label for="tele2_vertybe">Tele2 vertybė<span class="error-star"> *</span></label>
             <span class="tooltip">?
               <span class="tooltip-text">
                 Pasirink Tele2 vertybę, kurią nori matyti ant savo darbuotojo pažymėjimo nugarėlės
@@ -418,7 +419,7 @@
         <!-- 9. Ar turite kitą veiklą? (Radio) -->
         <div class="form-row">
           <div class="form-label">
-            Apmokestinant pajamų mokesčiu gaunamas su darbo santykiais susijusias pajamas norėsiu<span class ="error-star"> *<span>
+            Apmokestinant pajamų mokesčiu gaunamas su darbo santykiais susijusias pajamas norėsiu<span class="error-star"> *</span>
             <span class="tooltip">?
               <span class="tooltip-text">
                 Pasirinkus taikyti NPD, sudėjus visas metines pajamas, dėl svyruojančių pajamų, gali sumažėti (arba nebepriklausyti) NPD.
@@ -442,7 +443,7 @@
         <!-- 10. Smart-ID usage (Radio) -->
         <div class="form-row">
           <div class="form-label">
-            Naudojiesi m. parašu / Smart-ID?<span class ="error-star"> *<span>
+            Naudojiesi m. parašu / Smart-ID?<span class="error-star"> *</span>
           </div>
           <div class="form-input radio-group">
             <label>
@@ -464,7 +465,7 @@
         <!-- 11. Ar turite kitą veiklą? (Radio) -->
         <div class="form-row">
           <div class="form-label">
-            Ar šiuo metu turite kitą veiklą, kuriai skiriate dalį darbo dienos ir kuri teikia papildomas pajamas?<span class ="error-star"> *<span>
+            Ar šiuo metu turite kitą veiklą, kuriai skiriate dalį darbo dienos ir kuri teikia papildomas pajamas?<span class="error-star"> *</span>
             <span class="tooltip">?
               <span class="tooltip-text">
                 Pavyzdžiui: antraeilės pareigos, individuali veikla, autorinės sutartys ar kita
@@ -499,7 +500,7 @@
           <!-- Paso arba asmens tapatybės kortelės kopija -->
           <div class="form-row">
             <div class="form-label">
-              <label for="passportCopy">Paso arba asmens tapatybės kortelės el. kopija<span class ="error-star"> *<span></label>
+              <label for="passportCopy">Paso arba asmens tapatybės kortelės el. kopija<span class="error-star"> *</span></label>
             </div>
             <div class="form-input">
               <input type="file" id="passportCopy" name="passportCopy" capture="camera" multiple required />
@@ -508,7 +509,7 @@
           <!-- Nuotrauka darbo pažymėjimui -->
           <div class="form-row">
             <div class="form-label">
-              <label for="photo">Nuotrauka JPG formatu darbo pažymėjimui<span class ="error-star"> *<span></label>
+              <label for="photo">Nuotrauka JPG formatu darbo pažymėjimui<span class="error-star"> *</span></label>
             </div>
             <div class="form-input">
               <input type="file" id="photo" name="photo" multiple accept="image/jpeg, image/jpg" required />
@@ -553,7 +554,7 @@
         <!-- 1. Ryšys -->
         <div class="form-row">
           <div class="form-label">
-            <label for="kantakto_rysys">Ryšys<span class ="error-star"> *<span></label>
+            <label for="kantakto_rysys">Ryšys<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="kantakto_rysys" name="kantakto_rysys" placeholder="Sutuoktinis/-ė, Draugas/-ė, Brolis, Sesė" required />
@@ -562,7 +563,7 @@
         <!-- 2. Kontakt. Vardas -->
         <div class="form-row">
           <div class="form-label">
-            <label for="kontaktinis_vardas">Vardas<span class ="error-star"> *<span></label>
+            <label for="kontaktinis_vardas">Vardas<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input type="text" id="kontaktinis_vardas" name="kontaktinis_vardas" placeholder="Kontaktinio asmens vardas" required />
@@ -571,7 +572,7 @@
         <!-- 3. Kontakt telefono numeris -->
         <div class="form-row">
           <div class="form-label">
-            <label for="kontaktinis_telelefono_nr">Telefono numeris<span class ="error-star"> *<span></label>
+            <label for="kontakt_tel">Telefono numeris<span class="error-star"> *</span></label>
           </div>
           <div class="form-input">
             <input
@@ -602,7 +603,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-	  <script>
+    <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Select all text input fields (add other selectors if needed, e.g., textarea)
   var textInputs = document.querySelectorAll('input[type="text"]');
@@ -610,7 +611,7 @@ document.addEventListener('DOMContentLoaded', function() {
   textInputs.forEach(function(input) {
     input.addEventListener('input', function() {
       // This regex removes any characters except letters, numbers, spaces, hyphen, underscore, and dot.
-      this.value = this.value.replace(/[^A-Za-z0-9 \-_.,]/g, '');
+      this.value = this.value.replace(/[^A-Za-z0-9 \-_.,;]/g, '');
     });
   });
 });
@@ -702,54 +703,54 @@ document.addEventListener('DOMContentLoaded', function() {
           filesSection.style.display = "none";
         }
 
-		function escapeCSV(str) {
-		  let s = String(str).replace(/"/g, '""');  // Always escape double quotes…
-		  return `"${s}"`;                         // …and always wrap the string in quotes.
-		}
+        function escapeCSV(str) {
+          let s = String(str).replace(/"/g, '""');  // Always escape double quotes…
+          return `"${s}"`;                         // …and always wrap the string in quotes.
+        }
         const formData = new FormData(document.getElementById("membershipForm"));
         const excludedFields = ["passportCopy", "photo", "neteistumoPazyma", "otherDocuments"];
         let csvString = '"Field","Value"\n';
-		formData.forEach((value, key) => {
-		  if (excludedFields.indexOf(key) === -1) {
-			// Remove spaces from IBAN and phone numbers
-			if (key === "saskaitos_nr" || key === "telefono_nr" || key === "kontaktinis_telelefono_nr") {
-			  value = value.replace(/\s+/g, "");
-			}
-			if (key === "darbo_pradzia") {
-			  const d = new Date(value);
-			  // Ensure date is valid before formatting
-			  if (!isNaN(d)) {
-				const yyyy = d.getFullYear();
-				const mm = ("0" + (d.getMonth() + 1)).slice(-2);
-				const dd = ("0" + d.getDate()).slice(-2);
-				value = `${yyyy}-${mm}-${dd}`;
-			  }
-			}
-			csvString += `${escapeCSV(key)},${escapeCSV(value)}\n`;
-		  }
-		});
+        formData.forEach((value, key) => {
+          if (excludedFields.indexOf(key) === -1) {
+            // Remove spaces from IBAN and phone numbers
+            if (key === "saskaitos_nr" || key === "telefono_nr" || key === "kontaktinis_telelefono_nr") {
+              value = value.replace(/\s+/g, "");
+            }
+            if (key === "darbo_pradzia") {
+              const d = new Date(value);
+              // Ensure date is valid before formatting
+              if (!isNaN(d)) {
+                const yyyy = d.getFullYear();
+                const mm = ("0" + (d.getMonth() + 1)).slice(-2);
+                const dd = ("0" + d.getDate()).slice(-2);
+                value = `${yyyy}-${mm}-${dd}`;
+              }
+            }
+            csvString += `${escapeCSV(key)},${escapeCSV(value)}\n`;
+          }
+        });
         const csvWithBom = "\ufeff" + csvString;
 
-		html2canvas(document.getElementById("formContainer"), {
-		  ignoreElements: function (element) {
-			return element.id === "submitButton";
-		  }
-		}).then(function (canvas) {
-		  const { jsPDF } = window.jspdf;
-		  const pdf = new jsPDF("p", "pt", "a4");
-		  const pageWidth = pdf.internal.pageSize.getWidth();
-		  const pageHeight = pdf.internal.pageSize.getHeight();
-		  const scale = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-		  const newWidth = canvas.width * scale;
-		  const newHeight = canvas.height * scale;
-		  const imgData = canvas.toDataURL("image/png");
-		  const marginX = (pageWidth - newWidth) / 2;
-		  const marginY = (pageHeight - newHeight) / 2;
-		  pdf.addImage(imgData, "PNG", marginX, marginY, newWidth, newHeight);
-		  const pdfBlob = pdf.output("blob");
+        html2canvas(document.getElementById("formContainer"), {
+          ignoreElements: function (element) {
+            return element.id === "submitButton";
+          }
+        }).then(function (canvas) {
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF("p", "pt", "a4");
+          const pageWidth = pdf.internal.pageSize.getWidth();
+          const pageHeight = pdf.internal.pageSize.getHeight();
+          const scale = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+          const newWidth = canvas.width * scale;
+          const newHeight = canvas.height * scale;
+          const imgData = canvas.toDataURL("image/png");
+          const marginX = (pageWidth - newWidth) / 2;
+          const marginY = (pageHeight - newHeight) / 2;
+          pdf.addImage(imgData, "PNG", marginX, marginY, newWidth, newHeight);
+          const pdfBlob = pdf.output("blob");
 
-		  const zip = new JSZip();
-		  zip.file("Įdarbinimo forma.pdf", pdfBlob);
+          const zip = new JSZip();
+          zip.file("Įdarbinimo forma.pdf", pdfBlob);
 
           const fileInputs = document.querySelectorAll('input[type="file"]');
           fileInputs.forEach((input) => {
@@ -843,61 +844,6 @@ document.addEventListener('DOMContentLoaded', function() {
           updateInput();
         });
       });
-	      // Intercept the form submission
-  document.getElementById('documentForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent normal form submission
-    var formData = new FormData();
-
-    // Array of input field IDs
-    var fieldIds = ['passportCopy', 'photo', 'neteistumoPazyma', 'otherDocuments'];
-
-    // Process each file input field
-    fieldIds.forEach(function(fieldId) {
-      var input = document.getElementById(fieldId);
-      if (input && input.files.length > 0) {
-        // Object to keep track of file name counts for this field
-        var nameCounts = {};
-
-        Array.from(input.files).forEach(function(file) {
-          var originalName = file.name;
-          var newName = originalName;
-
-          // Increase the count if this file name has been seen before
-          if (nameCounts[originalName] === undefined) {
-            nameCounts[originalName] = 1;
-            // For the first file, use the original name (e.g., image.jpg)
-          } else {
-            nameCounts[originalName]++;
-            // Split the name into base and extension
-            var dotIndex = originalName.lastIndexOf('.');
-            var baseName = dotIndex !== -1 ? originalName.substring(0, dotIndex) : originalName;
-            var extension = dotIndex !== -1 ? originalName.substring(dotIndex) : '';
-            // Append the count in parentheses (e.g., image (2).jpg)
-            newName = baseName + ' (' + nameCounts[originalName] + ')' + extension;
-          }
-
-          // Create a new File object with the new unique name
-          var renamedFile = new File([file], newName, { type: file.type });
-          // Append the file to the FormData
-          formData.append(fieldId, renamedFile);
-        });
-      }
-    });
-
-    // Now send the FormData via fetch (AJAX)
-    fetch('/upload', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log('Upload success:', data);
-      // Optionally, handle a successful upload (e.g., redirect or show a message)
-    })
-    .catch(error => {
-      console.error('Upload error:', error);
-    });
-  });
     </script>
   </body>
 </html>
